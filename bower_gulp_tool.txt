@@ -1,1 +1,206 @@
 
+                        * bower:
+                        ----------
+-> Bower is the automation tool used to download the required
+   dependencies to develop web application.
+
+* Installation of bower
+------------------------
+ >npm install -g bower
+ [note:Automatically bower will install with following version -- bower@1.8.0]
+
+* bower components
+-------------------
+-> "bower.json" file called as bower components.
+-> this components used to maintain required dependency
+   to develop web application.
+
+bower.json
+-----------
+{
+  "name":"nareshit"
+  "dependencies":{
+        "angular":"latest",
+        "bootstrap":"latest",
+        --------------------,
+        --------------------
+  }
+}
+
+* Execution of bower components
+---------------------------------
+>bower install
+
+* Installation of dependency dynamically
+------------------------------------------
+> bower install bootstrap --save  ->[to save in bower.json file]
+
+* Uninstall the dependencies dynamically
+------------------------------------------
+> bower uninstall angulat --save
+
+* Know the dependencies (s/w) in project
+----------------------------------------
+> bower list
+
+
+Angular Framework path given by bower
+-------------------------------------
+bower_components/angular/angular.min.js
+
+BootStrap Framework path given by bower
+-------------------------------------
+bower_components/bootstrap/dist/css/bootstrap.min.css
+
+Jquery path given by bower
+--------------------------
+bower_components/jquery/dist/jquery.min.js
+
+
+                        Gulp
+                      --------
+->Gulp is the production based tool.
+->Gulp is the node based platform.(given by nodejs)
+->Gulp used to prepare the production build.
+
+Advantage of Gulp
+------------------
+1. Concat the files.
+2. Minify the js file. (crush/compress)
+3. Minify the html and css file.
+4. Delete the duplicate code.
+5. Disable the log.
+6. Run the bower.
+7. Startup the server.
+8. Watching the front end changes. (html,css,javascript)
+9. Live reloading the browsers.
+
+Modules in Gulp
+---------------
+-> Collection of predefined javascript classes called as module.
+1. gulp-concat -> this module is used to concat the files.
+2. gulp-uglify -> this module is used to minify the javascript files.
+3. gulp-minify-html -> this module is used to minify the html file.
+4. gulp-minify-css -> this module is used to minify the css file.
+5. gulp-bower -> this module used to install the bower.
+6. gulp-open -> this module used to launch the bower.
+7. gulp ->this module represents the gulp tool.
+
+[note: we can download the above module by using package.json file,
+       we can install the package.json file by using "npm install" command. ]
+
+Gulp installation
+------------------
+> npm install -g gulp
+  [note: Automatically gulp@3.9.1 version will be installed. ]
+
+Example
+-------
+step 1. create the directory structure for gulpDemo
+
+       gulpDemo    (folder)
+         devEnv    (folder)
+           html    (folder)
+             sample_one.html
+             sample_two.html
+           css      (folder)
+             style_one.css
+             style_two.css
+           js       (folder)
+             sample_one.js
+             sample_two.js
+
+step 2. Download the required number of modules to prepare gulp script.
+
+   package.json
+   -------------
+   {
+     "name":"nareshit",
+     "version":"1.0.0",
+     "description":"test gulp project"'
+
+     "dependencies":{
+           "gulp-concat":"latest",
+           "gulp-uglify":"latest",
+           "gulp-minify-html":"latest",
+           "gulp-minify-css":"latest",
+           "gulp":"latest",
+           "gulp-bower":"latest",
+           "gulp-open":"latest"
+     }
+   }
+
+   > npm install [Automatically above file will run and install all the 7 modules. ]
+   [note: Automatically all the modules download to "node_modules" folder. ]
+
+step 3. Prepare the Gulp script
+
+   gulpFile.js
+   -----------
+   //import modules
+   var gulp=require("gulp");
+   var gulp_concat=require("gulp-concat");
+   var gulp_uglify=require("gulp-uglify");
+   var gulp_minify_css=require("gulp-minify-css");
+   var gulp_minify_html=require("gulp-minify-html");
+   var open=require("gulp-open");
+   var bower=require("gulp-bower");
+
+   [note: require is the predefined function of gulp used to import the modules. ]
+
+                               // Create the task
+------------------------------------------------------------------------------------
+gulp.task("minify_html",function(){
+                               gulp.src("./devEnv/html/*.html")
+                               .pipe(concat("final.min.html"))
+                               .pipe(minifyHTML())
+                               .pipe(gulp.dest("./prodEnv/html"));
+   });
+
+
+
+gulp.task("minify_css",function(){
+                               gulp.src("./devEnv/css/*.css")
+                               .pipe(concat("final.min.css"))
+                               .pipe(minifyCSS())
+                               .pipe(gulp.dest("./prodEnv/css"));
+   });
+
+
+gulp.task("minify_js",function(){
+                               gulp.src("./devEnv/js/*.js")
+                               .pipe(concat("final.min.js"))
+                               .pipe(uglify())
+                               .pipe(gulp.dest("./prodEnv/js"));
+   });
+
+gulp.tsk("bower",function(){
+                  return bower();
+                  });
+ //return statement internally calls the "bower install command"
+
+gulp.task("open",function(){
+                 gulp.src("./index.html").pipe(open());
+                });
+       //index.html file launch in default browser
+---------------------------------------------------------------------------------------
+
+-> to run all the above task we have to create a default task.
+   // Default task
+   ---------------
+
+   gulp.task("default", ["minify_html",
+                         "minify_css",
+                         "minify_js",
+                         "bower",
+                         "open"] ,function(){
+                         });
+
+step 4. Execute the Gulp script.
+--------------------------------
+> gulp minify_html
+> gulp minify_css
+> gulp minify_js
+> gulp bower
+> gulp open
+> gulp
