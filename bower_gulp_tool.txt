@@ -135,7 +135,7 @@ step 2. Download the required number of modules to prepare gulp script.
 
 step 3. Prepare the Gulp script
 
-   gulpFile.js
+   GulpFile.js
    -----------
    //import modules
    var gulp=require("gulp");

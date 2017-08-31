@@ -1,2 +1,277 @@
 AngularJS
 ---------
+-> AngularJS is a client side javascript framework.
+-> AngularJS follows the MVC design pattern.
+
+   M-Model
+   -------
+   (JavaScript variable is called as model in AngularJS.)
+   ex- var data="Data from database soon..";
+   [Note: Where "data" variable is called as model in AngularJS.]
+
+   V-View
+   -------
+   (we can use html, html5, or Jade as the view in  AngularJS)
+
+
+   Controller
+   ----------
+   (Javascript functions are called as controller in AngularJS)
+      ex-  function my_fun(){
+             //Business Logic
+            }
+
+            [Note: where my_fun() called as controller in AngularJS.]
+
+->AngularJS released by the google.
+
+
+-------------------------
+Advantages of AngularJS
+-------------------------
+
+1. AngularJS supports module
+----------------------------
+   module: Collection of predefined classes implementation in in javascript
+           called as module.
+
+           1. ngAnimate: this module used to implement the animation in Angular.
+
+           2. ngStorage: this module is used to work with the storage.
+                         Angular supports two types of storage.
+
+                         a)localStorage
+                         b)sessionStorage
+
+                         localStorage
+                         ------------
+                         as a developer we must destroy the local storage explicitly.
+
+                         sessionStorage
+                         --------------
+                         whenever we close the browser or open the new tab,
+                         automatically we will lost the data.
+
+           3. ngMessage: this module used to handle the client side form validation.
+
+           4. ntRoute: Loading the target template to source template in a single page
+                       application (SPA) called as routing.
+
+                       -> we can implement routing in SPA by using ngRoute module.
+                       -> ngRoute Module is  the native module
+                       -> now a days we are not using ngRoute module in SPA.
+                          Because it is deprecated.
+
+           5. ui.router: this module is used to implement the Routing in SPA.
+                       -> ui.router module is the third party module.
+                       -> now a days almost all projects are using ui.router
+                          module, because of its advantages.
+
+                          ex- Implement the angular application with the following features.
+
+                           a)Animation support.
+                           b)Validation support.
+                           c)Single page application (SPA) using "ui.router" module.
+                           d)Storage support
+
+                           index.html
+                           -----------
+                           <! DOCTYPE html>
+                           <html ng-app="app">
+                             //we can develop Animation,Routing,Validations and Storage.
+
+                             <script src="bower_components/angular/angular.min.js></script>
+
+                             <script>
+                                var app=angular.module("app",["ngAnimate","ngMessages","ngStorage","ui.router"]);
+                             </script>
+                           </html>
+
+                           Explanation
+                           -----------
+                           ng-app is the prefefined directive used to assign logical name for web application.
+                            ex-> ng-app="app"
+                            where "app" is the logical name of web application.
+
+                            "angular" is the predefined class in "angular.min.js" file.
+
+                            "module" is the predefined function in angular class and taking two parameter
+                              a> logical name of web application.
+                              b> array of dependencies
+
+                            "module" will return the javascript object and this object used to implement the
+                             controller,services,filters,directives......
+                               ex-> var app=angular.module("app",[]);
+
+2. By using AngularJS we can directly work with html DOM.
+---------------------------------------------------------
+->DOM stands for document object model.
+
+ex- copy the data from one "div" to another "div" by using html and javascript.
+
+index.html
+----------
+<html>
+  <div id="div_one">Hello</div>
+  <div id="div_two"></div>
+  <script>
+     document.getElementById("div_two").innerHTML=document.getElementById("div_one").value;
+  </script>
+</html>
+
+[note: as a html and javascript developer, we must dependent on javascript to manipulate the DOM.]
+
+ex- copy the data from one "div" to another "div" by using AngularJS.
+
+index.html
+-----------
+<html ng-app>
+  <div ng-model="div_one">Hello</div>
+  <div ng-bind="div_one"></div>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+</html>
+
+[note: in above application we have the following predefined directives.]
+ ng-app: angular framework starts execution from "ng-app" directive.
+ ng-model: "ng-model" directive internally creates the object into heap memory with application data.
+ ng-bind: "ng-bind" directive binds the application data (Model data) to the view.
+
+[note: as a angular developer, we can directly manipulate the DOM without depending on javascript.]
+
+
+3. AngularJS supports the two ways data binding.
+------------------------------------------------
+->Automatic data synchronization between model and view with the supervision of controller
+  called as two ways data binding.
+
+4. Open source code
+---------------------
+-> as a angular developer we can customize the angular framework according to
+   application requirement.
+
+---------------------------
+Key features of AngularJS
+---------------------------
+
+1.Single page Application
+--------------------------
+->Loading of target template into source template without refreshing the whole web page
+  is technically called as "Single Page Application".
+->By default AngularJS supports single page application development.
+
+2. Routing
+------------
+-> Loading one template into another in SPA is called as routing
+-> By default angularJS supports routing in SPA.
+
+3. Directives
+-------------
+-> Directives in angularJS enhance the capability of html.
+-> We can customize the directives as per application requirements.
+-> We have two types of directives.
+
+a)Predefined directives
+  ex-> ng-app,ng-controller,ng-model,ng-bind...etc
+b)Custom directives
+  ex-> my-app,my-dir..
+
+4. Services
+-------------
+-> Services are meant for providing the common business logic to controller.
+-> By usning services we can reuse the business logic
+-> We have two types of services.
+
+a)Predefined services
+    ex-> $http
+b)Custom services
+    ex-> my_service
+
+5. Filters
+------------
+-> Filters are used to format the data according to application requirement.
+-> We have two types of filters
+
+a)Predefined filters
+-the filter given by angular framework is called predefined filter
+ex-uppercase
+   lowercase
+   currency
+   orderby
+b)Custom filters
+-the filter developed by developer based on application requirement called as custom filter.
+ex- my_filter
+    reverse
+    my_currency
+
+--------------********------------------
+*Comparision of AngularJS and Angular2
+---------------------------------------
+
+->the vendor of angularJS framework is Google.
+-the vendor of angular2&4 is the Google with Microsoft.
+
+->by using angularJS we can create the web application.
+-by using angular2&4 we can create web application as well as mobile application
+[note: with the help of "ionic" framework we can create the mobile application.]
+     "angular2 (or) angular4 + ionic => mobile application"
+
+->we can develop angular (1.x) application by using javascript.
+-we can develop angular 2&4 application by using "typescript".
+[note: "typescript is the superset of javascript.]
+
+->AngularJS have a poor performance compared to Angular 2&4.
+-Angular 2 have five times more performance than AngularJS.
+
+->We can directly render the angularJS application on browser because
+  angularJS internally uses the javascript.
+-We must convert the "typescript" to "javascript" before rendering on browser
+ in Angular 2&4 application.
+ Converting the typescript to javascript called as "transpilation".
+ we can perform the transpilation with the help of "tsc" compiler.
+
+->Javascript is the interpreted based language.
+-Typescript is the compiler based language.
+
+-------------------********--------------------
+#Difference between Angular2 and Angular4.
+-----------------------------------------------
+->Angular2 have less security compared to Angular4.In Angular4 data will be
+  encrypted so we can achieve more security.
+->Angular4 have more performance compared to Angular2.
+->Angular4 modifies the directives to achieve the more performance.
+->Angular4 learning is easy compared to Angular2.
+
+
+-------------------********--------------------
+#Difference between AngularJS and NodeJS.
+-----------------------------------------------
+->AngularJS is the front end javascript framework.
+-NodeJS is the server side technology.
+
+->Internally AngularJS uses javascript to develop web application.
+-Internally NodeJS uses the javascript to develop the server application
+
+ NodeJS can provide services to(database data) angular 1.x, angular 2.x, angular 4.x, reactJS...
+
+
+ -------------------********--------------------
+ #Difference between AngularJS and reactJS.
+ -----------------------------------------------
+->AngularJS is the client side javascript MVC based framework.
+-reactJS is the client side javascript library.
+
+->Angular have the poor performance while working with the Data structures.
+-reactJS are having good performance while working with data structures.
+
+--------------------------------------------END OF CHAPTER 1----------------------------------------------------
+
+Interview questions
+-------------------
+Q what is angularJS ?
+Q why angularJS ?
+Q Limitations of angularJS ?
+Q Difference between AngularJS to Angular 2.
+Q Difference between Angular 2 to Angular 4.
+Q Difference between AngularJS to reactJS.
+Q Difference between AngularJS to nodeJS.
